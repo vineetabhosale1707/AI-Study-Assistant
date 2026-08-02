@@ -302,9 +302,16 @@ ${pdfText}
 
 
 
-    const mcqData = JSON.parse(
-      response.choices[0].message.content
-    );
+    let aiResponse = response.choices[0].message.content;
+
+console.log(aiResponse);
+
+aiResponse = aiResponse
+  .replace(/```json/g, "")
+  .replace(/```/g, "")
+  .trim();
+
+const mcqData = JSON.parse(aiResponse);
 
 
 
@@ -326,7 +333,134 @@ ${pdfText}
 
 
 });
+// GENERATE FLASHCARDS FROM PDF
 
+app.post("/flashcards", async (req, res) => {
+
+  try {
+
+    if (!pdfText) {
+      return res.status(400).json({
+        error: "Please upload a PDF first."
+      });
+    }
+
+    const response = await ai.chat.completions.create({
+
+      model: "llama-3.1-8b-instant",
+
+      messages: [
+        {
+          role: "user",
+
+          content: `
+You are an expert study assistant.
+
+Create 8 flashcards from the uploaded PDF.
+
+IMPORTANT:
+Return ONLY valid JSON.
+
+Format:
+
+{
+  "flashcards": [
+    {
+      "front": "Question",
+      "back": "Answer"
+    }
+  ]
+}
+
+Keep answers simple and easy for college students.
+
+PDF Content:
+
+${pdfText}
+`
+        }
+      ]
+    });
+
+    let aiResponse = response.choices[0].message.content;
+
+console.log(aiResponse);
+
+aiResponse = aiResponse
+  .replace(/```json/g, "")
+  .replace(/```/g, "")
+  .trim();
+
+const flashcardData = JSON.parse(aiResponse);
+
+    res.json(flashcardData);
+
+  } catch (error) {
+
+    console.error("FLASHCARD ERROR:", error);
+
+    res.status(500).json({
+      error: error.message
+    });
+
+  }
+
+});
+
+// EASY EXPLANATION
+
+app.post("/explain", async (req, res) => {
+
+  try {
+
+    const { topic } = req.body;
+
+    if (!pdfText) {
+      return res.status(400).json({
+        error: "Please upload and summarize a PDF first."
+      });
+    }
+
+    const response = await ai.chat.completions.create({
+
+      model: "llama-3.1-8b-instant",
+
+      messages: [
+        {
+          role: "user",
+          content: `
+You are an expert teacher.
+
+Using ONLY the uploaded PDF, explain the topic:
+
+"${topic}"
+
+Rules:
+- Use very simple English.
+- Give a real-life example.
+- Keep it under 200 words.
+- Add one exam tip at the end.
+`
+        }
+      ]
+
+    });
+
+    res.json({
+      explanation: response.choices[0].message.content
+    });
+
+  } catch (error) {
+
+    console.error("EXPLAIN ERROR:", error);
+
+    res.status(500).json({
+      error: error.message
+    });
+
+  }
+
+});
 
 const PORT = process.env.PORT || 5000;
 

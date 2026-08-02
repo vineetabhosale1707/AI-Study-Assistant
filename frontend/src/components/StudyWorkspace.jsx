@@ -1,6 +1,7 @@
 import PdfUpload from "./PdfUpload";
 import ChatBot from "./ChatBot";
 import MCQGenerator from "./MCQGenerator";
+import Flashcards from "./Flashcards";
 
 
 
@@ -19,6 +20,8 @@ function StudyWorkspace() {
       <PdfUpload />
 
       <MCQGenerator />
+      <Flashcards />
+
 
 
       <ChatBot />
