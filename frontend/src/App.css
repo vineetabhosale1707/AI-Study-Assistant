@@ -1,0 +1,309 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f7fb;
+}
+/* Navbar */
+
+.navbar {
+  width: 90%;
+  margin: auto;
+  padding: 18px 30px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: white;
+  border-radius: 0 0 20px 20px;
+
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #2563eb;
+}
+
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+
+  transition: 0.3s ease;
+}
+
+
+.nav-links a:hover {
+  color: #2563eb;
+}
+
+/* Home Section */
+h1 {
+  color: #2563eb;
+}
+
+h2 {
+  text-align: center;
+}
+
+
+/* Buttons */
+button {
+  padding: 12px 28px;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(135deg,#2563eb,#4f46e5);
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.3s ease;
+}
+
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(37,99,235,0.3);
+}
+
+button:hover {
+  background-color: #1d4ed8;
+}
+
+
+/* Features Section */
+.features-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+
+.feature-card {
+  width: 250px;
+  padding: 20px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+
+.feature-card:hover {
+  transform: translateY(-8px);
+}
+
+
+/* Notes Section */
+.notes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.note-card {
+  width: 250px;
+  padding: 15px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
+/* Input Box */
+input {
+  padding: 10px;
+  width: 250px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  margin-top: 20px;
+}
+/* AI Summary */
+.summary-text {
+  white-space: pre-line;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+
+.summary-section {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  border-left: 5px solid #2563eb;
+  transition: 0.3s ease;
+}
+
+
+.summary-section:hover {
+  transform: translateY(-4px);
+}
+
+
+.summary-section h4 {
+  margin-top: 0;
+  color: #2563eb;
+  font-size: 18px;
+}
+
+
+.summary-section p {
+  line-height: 1.7;
+  color: #333;
+}
+
+
+.summary-section ul {
+  padding-left: 20px;
+}
+
+
+.summary-section li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+.pdf-card {
+  width: 80%;
+  margin: 30px auto;
+  padding: 25px;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+
+.pdf-card h3 {
+  text-align: center;
+  color: #2563eb;
+}
+section {
+  width: 85%;
+  margin: 50px auto;
+}
+#upload {
+  text-align: center;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+
+#upload h2 {
+  color: #2563eb;
+}
+
+
+input[type="file"] {
+  margin: 20px auto;
+  display: block;
+}
+
+/* PDF Upload Box */
+
+.upload-box {
+  width: 300px;
+  height: 150px;
+
+  margin: 20px auto;
+
+  border: 2px dashed #2563eb;
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: #2563eb;
+  font-size: 18px;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+
+.upload-box:hover {
+  background: #eff6ff;
+  transform: translateY(-5px);
+}
+
+
+.upload-box input {
+  display: none;
+}
+
+
+.upload-box p {
+  font-size: 14px;
+  color: #555;
+  font-weight: normal;
+}
+/* AI Loading Animation */
+
+.loading-card {
+  width: 80%;
+  margin: 30px auto;
+  padding: 30px;
+
+  background: white;
+  border-radius: 18px;
+
+  text-align: center;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+
+.loader {
+  width: 45px;
+  height: 45px;
+
+  border: 5px solid #ddd;
+  border-top: 5px solid #2563eb;
+
+  border-radius: 50%;
+
+  margin: auto;
+
+  animation: spin 1s linear infinite;
+}
+
+
+@keyframes spin {
+
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+
+}
