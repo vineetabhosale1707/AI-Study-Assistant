@@ -435,6 +435,10 @@ Using ONLY the uploaded PDF, explain the topic:
 
 "${topic}"
 
+PDF Content:
+
+${pdfText}
+
 Rules:
 - Use very simple English.
 - Give a real-life example.
