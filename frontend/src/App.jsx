@@ -2,10 +2,10 @@ import { useState } from "react";
 
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
-
+import Profile from "./components/Profile";
 import StudyWorkspace from "./components/StudyWorkspace";
 import Notes from "./components/Notes";
-
+import Settings from "./components/Settings";
 import "./App.css";
 
 
@@ -73,41 +73,25 @@ function App() {
 
 
         <section
-          style={{
-            display: activePage === "settings" ? "block" : "none"
-          }}
-        >
-
-          <h2>
-            ⚙️ Settings
-          </h2>
-
-          <p>
-            Customize your StudyMate AI experience.
-          </p>
-
-        </section>
-
+  id="settings"
+  style={{
+    display: activePage === "settings" ? "block" : "none"
+  }}
+>
+  <Settings />
+</section>
 
 
 
 
         <section
-          style={{
-            display: activePage === "profile" ? "block" : "none"
-          }}
-        >
-
-          <h2>
-            👤 Profile
-          </h2>
-
-          <p>
-            Student profile and learning progress.
-          </p>
-
-        </section>
-
+  id="profile"
+  style={{
+    display: activePage === "profile" ? "block" : "none"
+  }}
+>
+  <Profile />
+</section>
 
 
       </main>

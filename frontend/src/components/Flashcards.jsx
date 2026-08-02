@@ -20,6 +20,10 @@ function Flashcards() {
 
       if (response.ok) {
         setFlashcards(data.flashcards);
+        localStorage.setItem(
+  "flashcardCount",
+  data.flashcards.length
+);
       } else {
         alert(data.error);
       }

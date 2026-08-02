@@ -111,6 +111,8 @@ function PdfUpload() {
 
       if (response.ok) {
         setSummary(data.summary);
+        const count = Number(localStorage.getItem("pdfCount") || 0);
+localStorage.setItem("pdfCount", count + 1);
       } else {
         alert(data.error || "Something went wrong.");
       }
