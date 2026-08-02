@@ -230,7 +230,102 @@ ${question}
 });
 
 
+// GENERATE MCQS FROM PDF
 
+app.post("/mcq", async (req, res) => {
+
+  try {
+
+
+    if (!pdfText) {
+
+      return res.status(400).json({
+        error: "Please upload a PDF first."
+      });
+
+    }
+
+
+
+    const response = await ai.chat.completions.create({
+
+      model: "llama-3.1-8b-instant",
+
+
+      messages: [
+
+        {
+          role: "user",
+
+          content: `
+
+You are an expert exam question creator.
+
+Create 5 multiple choice questions from the uploaded PDF.
+
+IMPORTANT:
+Return ONLY valid JSON.
+No markdown.
+No extra explanation.
+
+Use exactly this format:
+
+{
+ "mcqs":[
+  {
+   "question":"Question text",
+   "options":[
+    "A) option",
+    "B) option",
+    "C) option",
+    "D) option"
+   ],
+   "answer":"Correct option"
+  }
+ ]
+}
+
+
+Make questions suitable for college students.
+
+PDF Content:
+
+${pdfText}
+
+`
+
+        }
+
+      ]
+
+    });
+
+
+
+    const mcqData = JSON.parse(
+      response.choices[0].message.content
+    );
+
+
+
+    res.json(mcqData);
+
+
+
+  }
+  catch(error){
+
+    console.error("MCQ ERROR:", error);
+
+
+    res.status(500).json({
+      error:error.message
+    });
+
+  }
+
+
+});
 
 
 const PORT = process.env.PORT || 5000;

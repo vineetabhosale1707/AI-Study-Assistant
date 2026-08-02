@@ -22,7 +22,7 @@ function PdfUpload() {
   let y = 20;
 
   doc.setFontSize(16);
-  doc.text("AI Study Assistant Summary", 20, y);
+ doc.text("StudyMate AI Summary", 20, y);
 
   y += 15;
 
@@ -84,7 +84,7 @@ function PdfUpload() {
   });
 
 
-  doc.save("AI-Study-Summary.pdf");
+  doc.save("StudyMate-AI-Summary.pdf");
 
 }
 

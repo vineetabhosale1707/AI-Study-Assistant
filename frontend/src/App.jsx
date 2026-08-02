@@ -1,43 +1,123 @@
+import { useState } from "react";
+
 import Navbar from "./components/Navbar";
-import Features from "./components/Features";
+import Sidebar from "./components/Sidebar";
+
+import StudyWorkspace from "./components/StudyWorkspace";
 import Notes from "./components/Notes";
-import PdfUpload from "./components/PdfUpload";
-import ChatBot from "./components/ChatBot";
+
 import "./App.css";
 
 
 function App() {
+
+  const [activePage, setActivePage] = useState("home");
+
+
   return (
+
     <>
+
       <Navbar />
 
+
+      <Sidebar setActivePage={setActivePage} />
+
+
       <main>
-        <section id="home">
-          <h1>Study Smarter with AI 🚀</h1>
+
+
+        <section
+          style={{
+            display: activePage === "home" ? "block" : "none"
+          }}
+        >
+
+          <h1>
+            Study Smarter. Learn Faster. 🚀
+          </h1>
 
           <p>
-            Create notes, generate summaries, and learn efficiently.
+            Upload your notes and let AI help you study.
           </p>
+
+
         </section>
 
-        <section id="upload">
-          <PdfUpload />
+
+
+        <section
+          style={{
+            display: activePage === "workspace" ? "block" : "none"
+          }}
+        >
+
+          <StudyWorkspace />
+
         </section>
 
-        <section id="chat">
-  <ChatBot />
-</section>
 
-        <section id="features">
-          <Features />
-        </section>
 
-        <section id="notes">
+
+        <section
+          style={{
+            display: activePage === "notes" ? "block" : "none"
+          }}
+        >
+
           <Notes />
+
         </section>
+
+
+
+
+        <section
+          style={{
+            display: activePage === "settings" ? "block" : "none"
+          }}
+        >
+
+          <h2>
+            ⚙️ Settings
+          </h2>
+
+          <p>
+            Customize your StudyMate AI experience.
+          </p>
+
+        </section>
+
+
+
+
+
+        <section
+          style={{
+            display: activePage === "profile" ? "block" : "none"
+          }}
+        >
+
+          <h2>
+            👤 Profile
+          </h2>
+
+          <p>
+            Student profile and learning progress.
+          </p>
+
+        </section>
+
+
+
       </main>
+
+
     </>
+
   );
+
 }
+
 
 export default App;

@@ -3,7 +3,7 @@ function Navbar() {
     <nav className="navbar">
 
       <div className="logo">
-        📚 AI Study Assistant
+        📚 StudyMate AI
       </div>
 
       <div className="nav-links">
