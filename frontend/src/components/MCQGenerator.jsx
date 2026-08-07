@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ListChecksIcon, SparkleIcon } from "./Icons";
 
 function MCQGenerator() {
 
@@ -48,44 +49,60 @@ function MCQGenerator() {
 
   return (
 
-    <div className="mcq-section">
+    <div className="panel ws-card">
 
-      <h2>❓ Generate MCQs</h2>
+      <div className="card-heading">
+        <span className="card-icon-circle">
+          <ListChecksIcon size={18} />
+        </span>
+        <div>
+          <h2>MCQ Generator</h2>
+        </div>
+      </div>
 
-      <button onClick={generateMCQs}>
+      <button className="btn-primary" onClick={generateMCQs}>
+        <SparkleIcon size={15} />
         Create MCQs
       </button>
 
       {loading && (
-        <p>🤖 AI is creating MCQs...</p>
+        <p className="tool-placeholder">🤖 AI is creating MCQs...</p>
       )}
 
-      {mcqs.map((mcq, index) => (
+      {!loading && mcqs.length === 0 && (
+        <p className="tool-placeholder">Generated MCQs will appear here.</p>
+      )}
 
-        <div
-          key={index}
-          className="mcq-card"
-        >
+      {mcqs.length > 0 && (
+        <div className="mcq-list">
+          {mcqs.map((mcq, index) => (
 
-          <h3>
-            {index + 1}. {mcq.question}
-          </h3>
+            <div
+              key={index}
+              className="mcq-card"
+            >
 
-          {mcq.options.map((option, i) => (
+              <h3>
+                {index + 1}. {mcq.question}
+              </h3>
 
-            <p key={i}>
-              {option}
-            </p>
+              {mcq.options.map((option, i) => (
+
+                <p key={i}>
+                  {option}
+                </p>
+
+              ))}
+
+              <strong>
+                Answer: {mcq.answer}
+              </strong>
+
+            </div>
 
           ))}
-
-          <strong>
-            Answer: {mcq.answer}
-          </strong>
-
         </div>
-
-      ))}
+      )}
 
     </div>
 

@@ -1,19 +1,13 @@
+import { GraduationCapIcon } from "./Icons";
+
 function Navbar() {
   return (
-    <nav className="navbar">
-
-      <div className="logo">
-        📚 StudyMate AI
-      </div>
-
-      <div className="nav-links">
-        <a href="#home">Home</a>
-        <a href="#upload">Upload</a>
-        <a href="#features">Features</a>
-        <a href="#notes">Notes</a>
-      </div>
-
-    </nav>
+    <div className="logo-wrap">
+      <span className="logo-badge">
+        <GraduationCapIcon size={18} />
+      </span>
+      StudyMate <span className="logo-accent">AI</span>
+    </div>
   );
 }
 

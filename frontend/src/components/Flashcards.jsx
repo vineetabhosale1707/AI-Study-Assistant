@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { LayersIcon, SparkleIcon } from "./Icons";
 
 function Flashcards() {
 
@@ -50,45 +51,59 @@ function Flashcards() {
 
   return (
 
-    <div className="flashcard-section">
+    <div className="panel ws-card">
 
-      <h2>🃏 Flashcards</h2>
+      <div className="card-heading">
+        <span className="card-icon-circle">
+          <LayersIcon size={18} />
+        </span>
+        <div>
+          <h2>Flashcards</h2>
+        </div>
+      </div>
 
-      <button onClick={generateFlashcards}>
+      <button className="btn-primary" onClick={generateFlashcards}>
+        <SparkleIcon size={15} />
         Generate Flashcards
       </button>
 
-      {loading && <p>🤖 AI is creating flashcards...</p>}
+      {loading && <p className="tool-placeholder">🤖 AI is creating flashcards...</p>}
 
-      <div className="flashcards-container">
+      {!loading && flashcards.length === 0 && (
+        <p className="tool-placeholder">Click-to-flip cards will appear here.</p>
+      )}
 
-        {flashcards.map((card, index) => (
+      {flashcards.length > 0 && (
+        <div className="flashcards-container">
 
-          <div
-            key={index}
-            className="flashcard"
-            onClick={() => flipCard(index)}
-          >
+          {flashcards.map((card, index) => (
 
-            {!flipped[index] ? (
-              <>
-                <h3>Question</h3>
-                <p>{card.front}</p>
-                <small>Click to Flip</small>
-              </>
-            ) : (
-              <>
-                <h3>Answer</h3>
-                <p>{card.back}</p>
-                <small>Click to Flip Back</small>
-              </>
-            )}
+            <div
+              key={index}
+              className="flashcard"
+              onClick={() => flipCard(index)}
+            >
 
-          </div>
+              {!flipped[index] ? (
+                <>
+                  <h3>Question</h3>
+                  <p>{card.front}</p>
+                  <small>Click to Flip</small>
+                </>
+              ) : (
+                <>
+                  <h3>Answer</h3>
+                  <p>{card.back}</p>
+                  <small>Click to Flip Back</small>
+                </>
+              )}
 
-        ))}
+            </div>
 
-      </div>
+          ))}
+
+        </div>
+      )}
 
     </div>
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ChatIcon, SendIcon } from "./Icons";
 
 function ChatBot() {
 
@@ -58,44 +59,47 @@ function ChatBot() {
 
   return (
 
-    <div className="chatbot-container">
+    <div className="panel ws-card">
 
-      <h2>🤖 Ask AI About Your PDF</h2>
+      <div className="card-heading">
+        <span className="card-icon-circle">
+          <ChatIcon size={18} />
+        </span>
+        <div>
+          <h2>Chat with PDF</h2>
+        </div>
+      </div>
 
+      {loading ? (
+        <div className="chat-display">
+          <h3>AI Answer</h3>
+          <p>⏳ AI is thinking...</p>
+        </div>
+      ) : answer ? (
+        <div className="chat-display">
+          <h3>AI Answer</h3>
+          <p>{answer}</p>
+        </div>
+      ) : (
+        <div className="chat-display is-placeholder">
+          <p>Ask a question about your PDF to get an AI answer.</p>
+        </div>
+      )}
 
       <div className="chat-input-area">
 
         <input
           type="text"
-          placeholder="Ask something about your notes..."
+          placeholder="Ask a question..."
           value={question}
           onChange={(e)=>setQuestion(e.target.value)}
         />
 
-
         <button onClick={askQuestion}>
-          Ask
+          <SendIcon size={16} />
         </button>
 
       </div>
-
-
-      {loading && (
-        <div className="chat-answer">
-          ⏳ AI is thinking...
-        </div>
-      )}
-
-
-      {answer && (
-        <div className="chat-answer">
-
-          <h3>AI Answer</h3>
-
-          <p>{answer}</p>
-
-        </div>
-      )}
 
     </div>
 

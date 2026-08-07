@@ -1,5 +1,6 @@
 import { useState } from "react";
 import jsPDF from "jspdf";
+import { UploadCloudIcon, SparkleIcon, DownloadIcon, RefreshIcon } from "./Icons";
 
 function PdfUpload() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -131,142 +132,140 @@ function clearPDF() {
 }
 
   return (
-    <section>
+    <>
 
-      <h2>📄 Upload Notes</h2>
+      <div className="panel ws-card">
 
-      <label className="upload-box">
-
-  📂 Upload PDF Notes
-
-  <input
-    type="file"
-    accept=".pdf"
-    onChange={handleFileChange}
-  />
-
-  <p>Click here to select your PDF</p>
-
-</label>
-      <br />
-
-      <button onClick={generateSummary}>
-  ✨ Generate AI Summary
-</button>
-
-
-      {selectedFile && (
-        <div className="pdf-card">
-          <h3>📁 Selected File</h3>
-          <p>{selectedFile.name}</p>
+        <div className="card-heading">
+          <span className="card-icon-circle">
+            <UploadCloudIcon size={18} />
+          </span>
+          <div>
+            <h2>Upload & Summarize Notes</h2>
+            <p>Drop a PDF and let StudyMate build a structured summary.</p>
+          </div>
         </div>
-      )}
 
-{loading && (
-  <div className="loading-card">
+        <label className="upload-dropzone">
 
-    <div className="loader"></div>
+          <span className="card-icon-circle">
+            <UploadCloudIcon size={20} />
+          </span>
 
-    <h3>
-      🤖 AI is reading your notes...
-    </h3>
+          <input
+            type="file"
+            accept=".pdf"
+            onChange={handleFileChange}
+          />
 
-    <p>
-      Extracting important concepts and creating your summary.
-    </p>
+          <strong>Upload PDF</strong>
+          <p>PDF up to 20MB</p>
 
-  </div>
-)}
+        </label>
 
+        <p className="upload-filename">
+          {selectedFile ? <strong>{selectedFile.name}</strong> : "No file selected yet."}
+        </p>
 
-
-      {summary && (
-        <div className="pdf-card">
-
-          <h3>📄 AI Summary</h3>
-          <button onClick={downloadPDF}>
-  ⬇ Download Summary
-</button>
-<button 
-  className="secondary-button"
-  onClick={clearPDF}
->
-  🔄 Upload Another PDF
-</button>
-
-
-          <div className="summary-section">
-            <h4>📌 Overview</h4>
-            <p>{summary.overview}</p>
-          </div>
-
-
-
-          <div className="summary-section">
-            <h4>⭐ Key Points</h4>
-
-            <ul>
-              {summary.keyPoints?.map((point, index) => (
-                <li key={index}>
-                  {point}
-                </li>
-              ))}
-            </ul>
-
-          </div>
-
-
-
-
-          <div className="summary-section">
-            <h4>📚 Important Definitions</h4>
-
-            {summary.definitions?.map((item, index) => (
-              <p key={index}>
-                <b>{item.term}:</b> {item.meaning}
-              </p>
-            ))}
-
-          </div>
-
-
-
-
-          <div className="summary-section">
-            <h4>📝 Exam Notes</h4>
-
-            <ul>
-              {summary.examNotes?.map((note, index) => (
-                <li key={index}>
-                  {note}
-                </li>
-              ))}
-            </ul>
-
-          </div>
-
-
-
-
-          <div className="summary-section">
-            <h4>🧠 Quick Revision</h4>
-
-            <ul>
-              {summary.quickRevision?.map((point, index) => (
-                <li key={index}>
-                  {point}
-                </li>
-              ))}
-            </ul>
-
-          </div>
-
-
+        <div className="upload-actions">
+          <button className="btn-primary" onClick={generateSummary}>
+            <SparkleIcon size={15} />
+            Generate AI Summary
+          </button>
         </div>
-      )}
+
+        {summary && (
+          <div className="upload-actions" style={{ marginTop: 10 }}>
+            <button className="btn-secondary" onClick={downloadPDF}>
+              <DownloadIcon size={15} />
+              Download Summary
+            </button>
+            <button className="btn-secondary" onClick={clearPDF}>
+              <RefreshIcon size={15} />
+              Upload Another PDF
+            </button>
+          </div>
+        )}
+
+      </div>
 
 
-    </section>
+      <div className="panel ws-card">
+
+        {loading && (
+          <div className="loading-state">
+            <div className="loader"></div>
+            <h3>AI is reading your notes...</h3>
+            <p>Extracting important concepts and creating your summary.</p>
+          </div>
+        )}
+
+        {!loading && !summary && (
+          <div className="summary-placeholder">
+            <span className="card-icon-circle">
+              <SparkleIcon size={20} />
+            </span>
+            <h3>AI Summary</h3>
+            <p>Your structured summary will appear here once you upload a PDF and generate a summary.</p>
+          </div>
+        )}
+
+        {!loading && summary && (
+          <div className="summary-scroll">
+
+            <div className="summary-block">
+              <h4>Overview</h4>
+              <p>{summary.overview}</p>
+            </div>
+
+            <div className="summary-block">
+              <h4>Key Points</h4>
+              <ul>
+                {summary.keyPoints?.map((point, index) => (
+                  <li key={index}>
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="summary-block">
+              <h4>Important Definitions</h4>
+              {summary.definitions?.map((item, index) => (
+                <p key={index}>
+                  <b>{item.term}:</b> {item.meaning}
+                </p>
+              ))}
+            </div>
+
+            <div className="summary-block">
+              <h4>Exam Notes</h4>
+              <ul>
+                {summary.examNotes?.map((note, index) => (
+                  <li key={index}>
+                    {note}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="summary-block">
+              <h4>Quick Revision</h4>
+              <ul>
+                {summary.quickRevision?.map((point, index) => (
+                  <li key={index}>
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+          </div>
+        )}
+
+      </div>
+
+    </>
   );
 }
 

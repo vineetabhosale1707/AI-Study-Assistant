@@ -1,111 +1,105 @@
+/* =========================================================
+   StudyMate AI — global design tokens & base styles
+   ========================================================= */
+
+:root {
+  --bg-void: #060810;
+  --bg-panel: rgba(17, 23, 39, 0.6);
+  --bg-panel-soft: rgba(17, 23, 39, 0.4);
+  --bg-panel-solid: #0c1120;
+  --border-subtle: rgba(148, 163, 184, 0.14);
+  --border-soft: rgba(148, 163, 184, 0.22);
+
+  --text-primary: #f4f6fb;
+  --text-secondary: #a7b1c4;
+  --text-muted: #6b7690;
+
+  --accent: #3b82f6;
+  --accent-light: #60a5fa;
+  --accent-soft-bg: rgba(59, 130, 246, 0.14);
+  --accent-gradient: linear-gradient(135deg, #4f8cff 0%, #6d5bf5 100%);
+
+  --danger: #f45b69;
+  --danger-bg: rgba(244, 91, 105, 0.12);
+  --danger-border: rgba(244, 91, 105, 0.3);
+
+  --radius-xl: 26px;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+
+  --shadow-panel: 0 20px 45px rgba(2, 6, 20, 0.35);
+  --nav-height: 72px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f5f7fb;
+  min-height: 100vh;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-void);
+  background-image:
+    radial-gradient(700px 460px at 8% 8%, rgba(59, 92, 222, 0.28), transparent 60%),
+    radial-gradient(760px 520px at 95% 6%, rgba(45, 143, 176, 0.16), transparent 55%),
+    radial-gradient(900px 620px at 90% 96%, rgba(112, 66, 200, 0.22), transparent 55%),
+    radial-gradient(600px 500px at 4% 96%, rgba(45, 90, 176, 0.14), transparent 55%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
 }
 
-
-/* Home */
-#home {
-  text-align: center;
-  padding: 50px 20px;
+#root {
+  min-height: 100vh;
 }
 
-h1 {
-  color: #2563eb;
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
 }
 
-h2 {
-  text-align: center;
+p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 
+a {
+  color: inherit;
+}
 
-/* Buttons */
 button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  background-color: #2563eb;
-  color: white;
-  cursor: pointer;
-  margin: 10px;
+  font-family: inherit;
 }
 
-button:hover {
-  background-color: #1d4ed8;
+input,
+textarea {
+  font-family: inherit;
 }
 
-
-/* Input */
-input {
-  display: block;
-  margin: 20px auto;
-  padding: 10px;
-  width: 250px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+::selection {
+  background: rgba(59, 130, 246, 0.35);
 }
 
-
-/* Features */
-.features-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
 
-
-.feature-card {
-  width: 250px;
-  padding: 20px;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  text-align: center;
-  transition: 0.3s;
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 10px;
 }
 
-
-.feature-card:hover {
-  transform: translateY(-8px);
-}
-
-
-/* Notes */
-.notes-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-
-.note-card {
-  width: 250px;
-  padding: 15px;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-.pdf-card {
-  width: 300px;
-  margin: 20px auto;
-  padding: 20px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-.pdf-card {
-  width: 350px;
-  margin: 20px auto;
-  padding: 20px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
+::-webkit-scrollbar-track {
+  background: transparent;
 }

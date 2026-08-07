@@ -1,10 +1,14 @@
 function FeatureCard({ icon, title, description }) {
 
   return (
-    <div className="feature-card">
+    <div className="panel feature-card">
+
+      <span className="card-icon-circle">
+        {icon}
+      </span>
 
       <h3>
-        {icon} {title}
+        {title}
       </h3>
 
       <p>

@@ -1,3 +1,5 @@
+import { SettingsIcon, DatabaseIcon, TrashIcon, RefreshIcon, InfoIcon } from "./Icons";
+
 function Settings() {
 
   function clearNotes() {
@@ -25,35 +27,73 @@ function Settings() {
 
   return (
 
-    <div className="settings-container">
+    <>
 
-      <h1>⚙️ Settings</h1>
+      <span className="page-eyebrow">
+        <SettingsIcon size={14} />
+        Settings
+      </span>
 
-      <button onClick={clearNotes}>
-        🗑 Clear Notes
-      </button>
+      <div className="page-header">
+        <h1>Preferences & data</h1>
+        <p>Manage your data and learn about StudyMate AI.</p>
+      </div>
 
-      <br /><br />
+      <div className="panel settings-panel">
 
-      <button onClick={clearProfile}>
-        🔄 Reset Study Data
-      </button>
+        <div className="card-heading">
+          <span className="card-icon-circle">
+            <DatabaseIcon size={18} />
+          </span>
+          <div>
+            <h2>Data Management</h2>
+            <p>Clear or reset your study data.</p>
+          </div>
+        </div>
 
-      <hr />
+        <div className="data-mgmt-grid">
 
-      <h2>About StudyMate AI</h2>
+          <div className="subcard">
+            <h3>Clear Notes</h3>
+            <p>Permanently remove all saved notes from your notebook.</p>
+            <button className="btn-danger" onClick={clearNotes}>
+              <TrashIcon size={15} />
+              Clear Notes
+            </button>
+          </div>
 
-      <p>
-        Version 1.0
-      </p>
+          <div className="subcard">
+            <h3>Reset Study Data</h3>
+            <p>Reset summaries, MCQs, flashcards, chat, and statistics.</p>
+            <button className="btn-danger" onClick={clearProfile}>
+              <RefreshIcon size={15} />
+              Reset Study Data
+            </button>
+          </div>
 
-      <p>
-        StudyMate AI is an AI-powered study assistant that helps students
-        summarize notes, generate MCQs, create flashcards, chat with PDFs,
-        and understand concepts in simple language.
-      </p>
+        </div>
 
-    </div>
+      </div>
+
+      <div className="panel settings-panel about-card">
+
+        <span className="card-icon-circle">
+          <InfoIcon size={18} />
+        </span>
+
+        <div>
+          <h2>About StudyMate AI</h2>
+          <p>
+            StudyMate AI is your premium AI-powered study companion — built to help you
+            summarize notes, generate practice questions and flashcards, chat with your
+            documents, and understand tough topics with ease.
+          </p>
+          <span className="version-pill">Version 1.0</span>
+        </div>
+
+      </div>
+
+    </>
 
   );
 
